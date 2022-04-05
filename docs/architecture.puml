@@ -1,0 +1,42 @@
+@startuml
+package Interactor {
+    class       ConcreteEngine
+    interface   AbstractEngine
+    interface   AbstractNetwork
+    interface   AbstractOptimizer
+    interface   AbstractScheduler
+    interface   AbstractLoss
+    interface   AbstractDataLoader
+    interface   AbstractTransform
+    interface   AbstractDataset
+}
+package Model {
+    class ConcreteNetwork
+    class ConcreteOptimizer
+    class ConcreteScheduler
+    class ConcreteLoss
+}
+package Data {
+    class ConcreteDataLoader
+    class ConcreteTransform
+    class ConcreteDataset
+}
+
+AbstractEngine --> AbstractNetwork
+AbstractEngine --> AbstractLoss
+AbstractEngine --> AbstractOptimizer
+AbstractEngine --> AbstractScheduler
+AbstractScheduler --> AbstractOptimizer
+AbstractEngine --> AbstractDataLoader
+AbstractDataLoader --> AbstractDataset
+AbstractDataset --> AbstractTransform
+ConcreteEngine --|> AbstractEngine
+ConcreteNetwork --|> AbstractNetwork
+ConcreteLoss --|> AbstractLoss
+ConcreteOptimizer --|> AbstractOptimizer
+ConcreteScheduler --|> AbstractScheduler
+ConcreteDataLoader --|> AbstractDataLoader
+ConcreteDataset --|> AbstractDataset
+ConcreteTransform --|> AbstractTransform
+
+@enduml
